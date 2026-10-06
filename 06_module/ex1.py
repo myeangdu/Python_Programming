@@ -16,38 +16,35 @@
 # =====================================================================
 
 # math 모듈: 수학 계산에 필요한 함수와 상수를 제공하는 표준 라이브러리
+
 import math
+
+print(dir(math))
 
 print(dir(math))
 print(math.pi)
 print(math.sqrt(16))
 
+# 별칭 만들기
+import math as m
+
+print(m.pi)
+print(m.sqrt(16))
+# 모듈명 없이 바로 함수명으로 불러오기
 from math import pi, sqrt
 
 print(pi)
 print(sqrt(16))
 
-
-# 별칭 만들기
-
-
-
-# 모듈명 없이 바로 함수명으로 불러오기
-
-
-
 # 여러 함수 불러오기
-
 
 
 # sys 모듈: 파이썬 인터프리터의 실행 환경과 관련된 정보를 제공하는 표준 라이브러리
 import sys
-print(sys.version)
-print(sys.path)
-print(sys.platform)
-                  # 현재 실행 중인 파이썬 인터프리터의 버전
-                 # 현재 실행 중인 운영체제 플랫폼 식별자
-                     # 파이썬 라이브러리 검색 디렉토리 목록
+
+print(sys.version)  # 현재 실행 중인 파이썬 인터프리터의 버전
+print(sys.platform)  # 현재 실행 중인 운영체제 플랫폼 식별자
+print(sys.path)  # 파이썬 라이브러리 검색 디렉토리 목록
 
 # 표준 라이브러리 설치 경로: C:\Users\<user_name>\AppData\Local\Programs\Python\Python314\Lib
 # 써드 파티 설치 경로: C:\Users\<user_name>\AppData\Local\Programs\Python\Python314\Lib\site-packages
@@ -62,31 +59,37 @@ print(sys.platform)
 # requests 모듈: HTTP 요청과 응답을 처리하기 위한 써드 파티 모듈
 import requests
 
-
 url = "https://httpbin.org/get"
 
-res = requests.get(url, params={"user_id": 1234})
-print(res.status_code)
-print(res.url)       
+response = requests.get(url, params={"user_id": 123})
 
-
-d = res.json()
-print(type(d))          # <class 'dict'>
-print(d["args"]["user_id"])   # '123'
+print(response.status_code)
+print(response.text)
+print(type(response.text))
 
 # 직렬화와 역직렬화
-# 직렬화(Serialization): 메모리 상의 객체를 파일 저장 or 저장이 가능한 형태로 변환
-# 역직렬화(Deserailization): 저장된 or 전송받은 데이터를 원래의 객체로 복원
-# 데이터 직렬화 방식: XML, JSON, YAML
+# - 직렬화(Serialization): 메모리 상의 객체를 파일 저장 or 전송이 가능한 형태
+# - 역직렬화(Deserialization): 저장된 or 전송받은 데이터를 원래의 객체로 복원
+# - 데이터 직렬화 방식: XML, JSON, YAML
 
+d = response.json()  # 서버가 응답한 JSON 형식의 문자열을 Python 객체로 변환
+print(type(d))
+
+print(d["args"]["user_id"])
+print(d["headers"]["Host"])
 
 # ===========================================================
 # 3. 사용자 정의 모듈 만들기
 # ===========================================================
 
-import mymain
+import mymath
+from mymath import PI, add
 
-print(mymain.add(2, 3))
+print(mymath.PI)
+print(mymath.add(20, 30))
+
+print(PI)
+print(add(30, 40))
 
 # __pycache__ 디렉토리란?
 # Python이 실행 속도를 높이기 위해 컴파일된 바이트코드(.pyc)를 캐시로 저장하는 디렉터리
