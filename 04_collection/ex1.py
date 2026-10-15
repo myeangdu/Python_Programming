@@ -101,3 +101,5 @@ print(a * 2)
 # 멤버십 연산자
 print(1 in a)
 print(32 in a)
+
+a.re
