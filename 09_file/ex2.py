@@ -23,8 +23,8 @@ import json
 #  - dump(객체, f) : 파이썬 ( 객체 ) -> JSON 형식 ( 파일 )
 #
 #  2) 역직렬화
-#  - loads(문자열) : JSON 형식 (문자열 ) -> 파이썬 ( 객체 )
-#  - load(f) : JSON 형식 (  ) -> 파이썬 (  )
+#  - loads(문자열) : JSON 형식 ( 문자열 ) -> 파이썬 ( 객체 )
+#  - load(f) : JSON 형식 ( 파일 ) -> 파이썬 ( 객체 )
 # ===========================================================
 
 
@@ -48,10 +48,10 @@ json_str = json.dumps(data, ensure_ascii=False, indent=4)
 print(json_str, type(json_str))
 
 # 역직렬화) JSON 형식 문자열 -> 파이썬 객체
-# parsed = json.( )(json_str)
-# print( )
-# print( )                      # 100 출력
-# print( )                      # 컴구 출력
+parsed = json.loads(json_str)
+print(parsed)
+print(parsed["scores"][0])      # 100 출력
+print(parsed["subjects"][1])   # 컴구 출력
 
 
 # ===========================================================
@@ -86,9 +86,9 @@ students = [
 ]
 
 # 직렬화) 파이썬 객체 -> JSON 형식 문자열
-json_str = json.( )(students, ensure_ascii=False, indent=4)
-print( )
+json_str = json.dumps(students, ensure_ascii=False, indent=4)
+print(json_str)
 
 # 역직렬화) JSON 형식 문자열 -> 파이썬 객체
-parsed = json.( )(json_str)
-print( )
+parsed = json.loads(json_str)
+print(parsed)
